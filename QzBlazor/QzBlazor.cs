@@ -8,17 +8,20 @@ namespace QzBlazor
 {
     public class Qz
     {
-        private readonly IJSRuntime _runtime;
-        public Qz(IJSRuntime runtime)
+        private readonly IJSRuntime _jsRuntime;
+
+        public Printers Printers { get; }
+        public Qz(IJSRuntime jsRuntime)
         {
-            _runtime = runtime;
+            _jsRuntime = jsRuntime;
+            Printers = new Printers(jsRuntime);
         }
 
-        public async Task<bool> Connect()
+        public async Task<bool> ConnectAsync()
         {
             try
             {
-                await _runtime.InvokeVoidAsync("qz.websocket.connect");
+                await _jsRuntime.InvokeVoidAsync("qz.websocket.connect");
                 return true;
             }
             catch (Exception e)
@@ -28,16 +31,29 @@ namespace QzBlazor
             }
         }
 
-        public async Task<bool> IsConnected()
+        public async Task<bool> IsConnectedAsync()
         {
             try
             {
-                return await _runtime.InvokeAsync<bool>("qz.websocket.isActive");
+                return await _jsRuntime.InvokeAsync<bool>("qz.websocket.isActive");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 return false;
+            }
+        }
+
+        public async Task<string> GetVersionAsync()
+        {
+            try
+            {
+                return await _jsRuntime.InvokeAsync<string>("qz.api.getVersion");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
             }
         }
     }

@@ -1,0 +1,47 @@
+﻿@page "/printers"
+
+<h1>Printers</h1>
+
+@if (_printerNames != null)
+{
+    <ul>
+        @foreach (var printerName in _printerNames)
+        {
+            <li>@printerName</li>
+        }
+    </ul>
+}
+<button class="btn btn-primary" @onclick="FindAllPrinters">List Printers</button>
+<br />
+
+@if (_printerDetails != null)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Driver</th>
+                <th>Default</th>
+                <th>Density</th>
+            </tr>
+        </thead>
+        @foreach (var printer in _printerDetails)
+        {
+            <tr>
+                <td>@printer.Name</td>
+                <td>@printer.Driver</td>
+                <td>@printer.Default</td>
+                <td>@printer.Density</td>
+            </tr>
+        }
+    </table>
+}
+<button class="btn btn-primary" @onclick="PrinterDetails">List Printers Details</button>
+<br />
+
+@if (_printerName != null)
+{
+    <p>@_printerName</p>
+}
+<input @bind-value="PrinterQuery" type="text" />
+<button class="btn btn-primary" @onclick="FindPrinter">FindAsync Printer by query</button>

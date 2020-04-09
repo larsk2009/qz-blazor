@@ -1,0 +1,9 @@
+﻿@page "/misc"
+
+<h1>Printers</h1>
+
+@if (_version != null)
+{
+    <p>@_version</p>
+}
+<button class="btn btn-primary" @onclick="GetVersion">FindAsync Printer by query</button>

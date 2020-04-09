@@ -14,19 +14,20 @@ namespace QzBlazor.Sample.ServerSide.Pages
         private IJSRuntime JsRuntime { get; set; }
 
         private Qz _qz;
+
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            if (firstRender)
-            {
-                _qz = new Qz(JsRuntime);
-            }
+            //if (firstRender)
+            //{
+            //    _qz = new Qz(JsRuntime);
+            //}
 
-            if (!await _qz.IsConnected())
-            {
-                var result = await _qz.Connect();
-            }
+            //if (!await _qz.IsConnectedAsync())
+            //{
+            //    var result = await _qz.ConnectAsync();
+            //}
 
-            var isConnected = await _qz.IsConnected();
+            //var isConnected = await _qz.IsConnectedAsync();
 
             await base.OnAfterRenderAsync(firstRender);
         }
