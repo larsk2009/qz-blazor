@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.JSInterop;
+using QzBlazor.Config;
 
 namespace QzBlazor
 {
@@ -55,6 +56,11 @@ namespace QzBlazor
                 Console.WriteLine(e);
                 throw;
             }
+        }
+
+        public async Task Print(string printerName, List<string> data)
+        {
+            await _jsRuntime.InvokeVoidAsync("QzBlazor.print", printerName, data);
         }
     }
 }

@@ -1,0 +1,19 @@
+﻿@page "/configs"
+
+<div class="card mb-4">
+    <h5 class="card-header">Get default config</h5>
+    <div class="card-body">
+        <p class="card-text">
+            <code>
+                @("[Inject]")
+                @("IJsRuntime jsRuntime {get; set;}")
+                <br/>
+                @("var config = PrinterConfig.GetConfigAsync(jsRuntime, \"printerName\")")
+            </code>
+        </p>
+    </div>
+</div>
+
+<input @bind-value="printerName"/>
+<button class="btn btn-primary" @onclick="GetConfig">Get Config</button>
+

@@ -1,0 +1,22 @@
+﻿@page "/printing"
+
+@if (_printerNames != null)
+{
+    <select @bind="_selectedPrinterName">
+        @foreach (var printerName in _printerNames)
+        {
+            <option value="@printerName">@printerName</option>
+        }
+    </select>
+}
+else
+{
+    <p>Loading...</p>
+}
+
+<button class="btn btn-primary" @onclick="GetPrinters">Refresh printers</button>
+<br/>
+
+<textarea style="min-width: 200px;" @bind="_rawCommand"></textarea>
+
+<button class="btn btn-primary" @onclick="Print">Print raw</button>

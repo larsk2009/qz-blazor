@@ -17,9 +17,17 @@ namespace QzBlazor
 
         public async Task<List<string>> GetAllPrinterNamesAsync()
         {
-            var printerNames = await _jsRuntime.InvokeAsync<List<string>>("qz.printers.find");
+            try
+            {
+                var printerNames = await _jsRuntime.InvokeAsync<List<string>>("qz.printers.find");
 
-            return printerNames;
+                return printerNames;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw new Exception("Error getting printer names. Have you called `await qz.ConnectAsync()`?");
+            }
         }
 
         /// <summary>
