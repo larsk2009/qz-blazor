@@ -5,6 +5,19 @@ Blazor wrapper around the QZ javascript library
 ## Supported Functions
 Right know, only some features are implemented. If you need a specific functionality implemented just create a new issue and I will gladly add it to this project.
 
+## Setup
+### 1. Adding QzBlazor.js
+
+Add the following to your `_Host.cshtml`.
+
+```cshtml
+<script src="_content/QzBlazor/QzBlazor.js"></script>
+```
+
+### 2. Adding qz-tray.js
+
+Download QzTray. Inside the demo folder it should contain 3 files: qz-tray.js, rsvp-x.x.x.min.js and sha-256.min.js. Add these to your project and reference them, also in `_Host.csthml` like is done in [this](https://qz.io/wiki/getting-started#the-code) page.
+
 ## Usage
 Please also refer to the sample project for usage.
 
