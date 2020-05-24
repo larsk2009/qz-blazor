@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
@@ -53,6 +55,19 @@ namespace QzBlazor.Sample.ServerSide
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+
+            var assembly = Assembly.GetExecutingAssembly();
+
+            var certName = assembly.GetManifestResourceNames().Single(str => str.EndsWith("cert.pem"));
+
+            using (Stream stream = assembly.GetManifestResourceStream(certName))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                QzBlazor.SignMessage.Cert = reader.ReadToEnd();
+            }
+
+            SignMessage.PrivateKeyPath = env.ContentRootPath + "\\Certs\\privateKey.pfx";
+            SignMessage.Password = "qzblazor";
         }
     }
 }

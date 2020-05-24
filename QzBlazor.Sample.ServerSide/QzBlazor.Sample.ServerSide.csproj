@@ -5,7 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Certs\cert.pem" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Certs\cert.pem" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\QzBlazor\QzBlazor.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Certs\privateKey.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
